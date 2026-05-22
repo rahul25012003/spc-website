@@ -1,0 +1,19 @@
+{
+  "name": "Suryapriya Constructions Pvt Ltd",
+  "short_name": "SPC",
+  "description": "Bengaluru-based civil engineering & project management firm. Formerly SPG Constructions.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ECE5D7",
+  "theme_color": "#1F1B16",
+  "lang": "en-IN",
+  "categories": ["business", "construction", "engineering"],
+  "icons": [
+    { "src": "favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

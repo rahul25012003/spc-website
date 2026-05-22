@@ -1,0 +1,43 @@
+{
+  "lang": "en",
+  "label": "English",
+  "direction": "ltr",
+  "nav": {
+    "about": "About",
+    "services": "Services",
+    "approach": "Approach",
+    "projects": "Projects",
+    "team": "Team",
+    "contact": "Contact",
+    "cta": "Start a Project"
+  },
+  "hero": {
+    "live": "Live on 9 sites · Karnataka",
+    "intro": "Building the world's most enduring infrastructure with our bespoke civil engineering & project management — crafted for ambitious clients across India.",
+    "ctaPrimary": "Explore Projects",
+    "ctaSecondary": "Get in Touch"
+  },
+  "about": {
+    "eyebrow": "About SPC",
+    "title": "Formerly known as SPG Constructions",
+    "para1": "Established in 2017, Suryapriya Constructions Pvt Ltd is a Bengaluru-based civil engineering firm with deep expertise in project management.",
+    "vision": "We aim to build world-class infrastructure by setting new benchmarks in providing all-around services and value propositions to the Client and creating excellence and perfection in the Construction industry.",
+    "mission": "We aspire to execute our work with exceptional diligence and provide the best quality of products for societies, businesses as well as individuals."
+  },
+  "contact": {
+    "title": "Plan your project",
+    "submit": "Start Planning",
+    "labels": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "project_type": "Project Type",
+      "message": "Tell us about your project"
+    }
+  },
+  "footer": {
+    "tagline": "Committed to Excellence",
+    "rights": "All Rights Reserved",
+    "formerly": "Formerly SPG Constructions"
+  }
+}
