@@ -46,7 +46,8 @@
       "Bash(git commit -m 'Fix hero CTAs: ::before gold overlay was covering text. Use simple background-color hover instead *)",
       "Bash(git commit -m 'Contain footer brand backdrop \\(no more column bleed\\) + small ascending-blocks corner accent *)",
       "Bash(git commit -m 'Fix footer Suryapriya backdrop — show full word centered \\(was clipped at bottom\\) *)",
-      "Bash(git commit -m 'Animate clients wall + footer with proper motion design *)"
+      "Bash(git commit -m 'Animate clients wall + footer with proper motion design *)",
+      "Bash(git commit -m 'Client logos in full color always + footer richer animations *)"
     ]
   }
 }

@@ -2293,8 +2293,7 @@ ul { list-style: none; }
   max-height: 60px;
   width: auto; height: auto;
   object-fit: contain;
-  filter: grayscale(1) opacity(.65);
-  transition: filter .4s ease, transform .4s var(--ease);
+  transition: transform .4s var(--ease), filter .4s ease;
 }
 
 /* Gold expanding ring on hover */
@@ -2318,8 +2317,8 @@ ul { list-style: none; }
   inset: 3px;
 }
 .clogo:hover img {
-  filter: grayscale(0) opacity(1);
   transform: scale(1.06);
+  filter: brightness(1.05);
 }
 
 @media (max-width: 1024px) {
@@ -2995,45 +2994,51 @@ ul { list-style: none; }
 .footer__brand-bg-line {
   position: absolute;
   top: 50%;
-  left: 0;
+  left: -8px;
   transform: translateY(-50%);
   display: block;
   width: 100%;
   font-family: var(--f-display);
   font-style: italic;
-  font-variation-settings: "opsz" 72, "SOFT" 100;
-  font-size: clamp(2.4rem, 4vw, 3.5rem);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  font-size: clamp(3rem, 5.5vw, 4.4rem);
   font-weight: 400;
   line-height: 1;
-  letter-spacing: -.035em;
+  letter-spacing: -.045em;
   white-space: nowrap;
   text-align: left;
-  background: linear-gradient(135deg,
-    rgba(184,148,106, .30) 0%,
-    rgba(184,148,106, .14) 50%,
-    rgba(184,148,106, .04) 100%);
+  background: linear-gradient(120deg,
+    rgba(184,148,106, .55) 0%,
+    rgba(184,148,106, .25) 35%,
+    rgba(184,148,106, .55) 65%,
+    rgba(184,148,106, .15) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-size: 200% 200%;
-  animation: brandShimmer 10s ease-in-out infinite;
+  background-size: 250% 100%;
+  animation: brandShimmer 6s ease-in-out infinite;
   user-select: none;
 }
 .footer__brand-bg-sub {
   display: none;
 }
 
-/* Tiny architectural ascending-blocks decoration top-right corner of brand */
+/* Animated ascending-blocks decoration top-right of brand — pulses */
 .footer__brand-bg::after {
   content: '';
   position: absolute;
-  top: 14px; right: 12px;
-  width: 32px; height: 24px;
+  top: 18px; right: 14px;
+  width: 44px; height: 32px;
   background:
-    linear-gradient(to top, #1F3A6B 0 100%) 22px 0 / 10px 24px no-repeat,
-    linear-gradient(to top, #5588B8 0 100%) 11px 6px / 10px 18px no-repeat,
-    linear-gradient(to top, #8DBEDD 0 100%) 0   12px / 10px 12px no-repeat;
-  opacity: .18;
+    linear-gradient(to top, #1F3A6B 0 100%) 30px 0  / 14px 32px no-repeat,
+    linear-gradient(to top, #5588B8 0 100%) 15px 8  / 14px 24px no-repeat,
+    linear-gradient(to top, #8DBEDD 0 100%) 0   16  / 14px 16px no-repeat;
+  opacity: .35;
+  animation: blocksGlow 5s ease-in-out infinite;
+}
+@keyframes blocksGlow {
+  0%, 100% { opacity: .25; transform: translateY(0); }
+  50% { opacity: .55; transform: translateY(-2px); }
 }
 
 @keyframes brandShimmer {
@@ -3210,12 +3215,48 @@ ul { list-style: none; }
 }
 .footer__links a, .footer__contact a {
   display: block;
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--muted);
-  padding: 4px 0;
-  transition: color .2s, padding-left .2s;
+  padding: 6px 0;
+  position: relative;
+  transition: color .25s, padding-left .3s var(--ease);
+  font-weight: 500;
 }
-.footer__links a:hover, .footer__contact a:hover { color: var(--ink); padding-left: 3px; }
+.footer__links a::before {
+  content: '→';
+  position: absolute;
+  left: -4px; top: 6px;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity .3s, transform .3s var(--ease);
+  font-size: 11px;
+  font-weight: 700;
+}
+.footer__links a:hover {
+  color: var(--ink);
+  padding-left: 18px;
+}
+.footer__links a:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+.footer__contact a:hover { color: var(--accent-deep); }
+.footer__contact div {
+  display: flex; gap: 12px;
+  margin-bottom: 14px;
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  transition: color .25s;
+}
+.footer__contact div:hover { color: var(--ink); }
+.footer__contact i {
+  color: var(--accent);
+  margin-top: 4px;
+  transition: transform .3s var(--ease);
+}
+.footer__contact div:hover i { transform: scale(1.2) rotate(-8deg); }
 .footer__contact div {
   display: flex; gap: 10px;
   margin-bottom: 12px;
