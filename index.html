@@ -118,7 +118,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/style.css?v=20260522a" />
+  <link rel="stylesheet" href="css/style.css?v=20260522i" />
 
   <!-- G2 — Google Analytics 4 (replace G-XXXXXXXXXX with your real measurement ID) -->
   <!--
@@ -154,6 +154,9 @@
 <a href="#main" class="skip-link">Skip to main content</a>
 
 <!-- Clean lean loader (cream bg, static logo, ~600ms total) -->
+<!-- D4 / M4 — scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__inner">
     <div class="loader__logo">
@@ -167,7 +170,7 @@
 <!-- Navigation -->
 <header class="nav" id="nav">
   <a href="#top" class="nav__logo">
-    <img src="images/brand/spc-logo-light.png" alt="SPC" class="nav__logo-mark" width="42" height="32"/>
+    <img src="images/brand/spc-logo.png" alt="SPC" class="nav__logo-mark" width="42" height="32"/>
     <span>Suryapriya</span>
   </a>
   <nav class="nav__links" aria-label="Primary">
@@ -275,8 +278,19 @@
       <h1 aria-label="Suryapriya Constructions">
         <span class="reveal-word">S</span><span class="reveal-word em">u</span><span class="reveal-word">r</span><span class="reveal-word">y</span><span class="reveal-word">a</span><span class="reveal-word em">p</span><span class="reveal-word">r</span><span class="reveal-word">i</span><span class="reveal-word">y</span><span class="reveal-word">a</span>
       </h1>
-      <hr />
+      <span class="hero__accent-line" aria-hidden="true"></span>
       <p class="hero__sub">Civil Engineering &amp; Project Management · Bengaluru · Est. 2017</p>
+    </div>
+  </div>
+
+  <!-- C9 / H4 coordinate chip -->
+  <div class="hero__coord" aria-hidden="true">12°58′N · 77°35′E · BENGALURU</div>
+  <!-- C10 / N2 Est. 2017 emblem -->
+  <div class="estd-emblem" aria-hidden="true">
+    <div class="estd-emblem-inner">
+      <span>Est.</span>
+      <strong>2017</strong>
+      <span>Bengaluru</span>
     </div>
   </div>
 
@@ -288,7 +302,10 @@
 </section>
 
 <!-- ============ MANIFESTO ============ -->
-<section class="manifesto" id="about">
+<!-- F4 / N5 — animated gold divider line -->
+<span class="section-divider-line" aria-hidden="true"></span>
+
+<section class="manifesto" id="about" data-blur-in>
   <div class="container">
     <p class="manifesto__lead">
       We build
@@ -305,7 +322,7 @@
 </section>
 
 <!-- ============ ABOUT / VISION / MISSION ============ -->
-<section class="section about" id="story">
+<section class="section about" id="story" data-label="About" data-roman="I">
   <div class="container">
     <div class="about__grid">
       <div class="about__visual" data-reveal>
@@ -366,7 +383,7 @@
 </section>
 
 <!-- ============ PERFECT OBJECTIVE ============ -->
-<section class="section perfect">
+<section class="section perfect" data-label="Method" data-roman="II">
   <div class="container">
     <div class="head" data-reveal>
       <span class="chip"><i class="fa-solid fa-circle"></i> Our Philosophy</span>
@@ -467,7 +484,7 @@
 </section>
 
 <!-- ============ SERVICES ============ -->
-<section class="section services" id="services">
+<section class="section services" id="services" data-label="Services" data-roman="III">
   <div class="container">
     <div class="head" data-reveal>
       <span class="chip"><i class="fa-solid fa-circle"></i> Services</span>
@@ -760,7 +777,7 @@
 </section>
 
 <!-- ============ APPROACH / LIFECYCLE ============ -->
-<section class="section approach" id="approach">
+<section class="section approach" id="approach" data-label="Process" data-roman="IV">
   <div class="container">
     <div class="head" data-reveal>
       <span class="chip"><i class="fa-solid fa-circle"></i> Project Life Cycle</span>
@@ -1039,7 +1056,7 @@
 </section>
 
 <!-- ============ FEATURED PROJECTS — static HTML for Swiper, Alpine for modal ============ -->
-<section class="section featured" id="projects" x-data="{ show: null }" x-cloak>
+<section class="section featured" id="projects" data-label="Projects" data-roman="V" x-data="{ show: null }" x-cloak>
   <div class="container">
     <div class="head">
       <span class="chip"><i class="fa-solid fa-circle"></i> Featured Projects</span>
@@ -1285,7 +1302,7 @@
 </section>
 
 <!-- ============ KEY PERSONNEL ============ -->
-<section class="section team" id="team">
+<section class="section team" id="team" data-label="People" data-roman="VI">
   <div class="container">
     <div class="head" data-reveal>
       <span class="chip"><i class="fa-solid fa-circle"></i> Leadership</span>
@@ -1465,7 +1482,7 @@
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="section faq" id="faq" x-data="{ open: null }">
+<section class="section faq" id="faq" data-label="Questions" data-roman="VII" x-data="{ open: null }">
   <div class="container">
     <div class="head" data-reveal>
       <span class="chip"><i class="fa-solid fa-circle"></i> FAQ</span>
@@ -1970,6 +1987,21 @@
   </div>
 </section>
 
+<!-- ============ PRE-FOOTER CTA ============ -->
+<section class="prefooter">
+  <div class="prefooter__inner">
+    <div>
+      <p class="prefooter__eyebrow">Let's build</p>
+      <h3>Have a project in <em>Karnataka</em>?</h3>
+      <p>From a single warehouse to a turnkey campus — share the brief and our General Manager will respond within one working day.</p>
+    </div>
+    <div class="prefooter__actions">
+      <a href="#contact" class="pill">Start a project <span class="pill__arrow"><i class="fa-solid fa-arrow-right"></i></span></a>
+      <a href="https://wa.me/919535355765" target="_blank" rel="noopener" class="pill pill--ghost">WhatsApp us <span class="pill__arrow"><i class="fa-brands fa-whatsapp"></i></span></a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="container">
@@ -2015,7 +2047,6 @@
       <p><a href="#contact">Privacy</a> · <a href="#contact">Terms</a> · <a href="#contact">Cookie Policy</a></p>
     </div>
   </div>
-  <h2 class="footer__wordmark">Suryapriya</h2>
 </footer>
 
 <!-- Floating section navigator (desktop only) -->
@@ -2064,6 +2095,6 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
 <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-<script src="js/main.js?v=20260522a" defer></script>
+<script src="js/main.js?v=20260522i" defer></script>
 </body>
 </html>

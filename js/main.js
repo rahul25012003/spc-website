@@ -42,11 +42,16 @@
     return href === '#top' ? document.body : document.querySelector(href);
   }).filter(Boolean);
 
+  var scrollProgress = document.getElementById('scrollProgress');
   function onScroll() {
     var y = window.scrollY;
     if (nav) nav.classList.toggle('is-scrolled', y > 40);
     if (totop) totop.classList.toggle('is-visible', y > 500);
     if (sidedots) sidedots.classList.toggle('is-visible', y > 600);
+    if (scrollProgress) {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    }
 
     // Top nav scroll spy
     if (spySections.length) {
