@@ -200,6 +200,44 @@
     });
   }
 
+  /* ---------- Project list cards → open modal (instead of lightbox) ---------- */
+  var caseStudyMap = {
+    'sats-food':         'case-study-sats.html',
+    'menzies-aviation':  'case-study-menzies.html',
+    'hoskote-logistics': 'case-study-hoskote.html',
+    'wildcraft':         'case-study-wildcraft.html',
+    'rossell-techsys':   'case-study-rossell.html',
+  };
+  document.querySelectorAll('.projlist__grid .proj').forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      e.preventDefault();
+      var img = card.querySelector('.proj__img img');
+      var badge = card.querySelector('.proj__badge');
+      var h3 = card.querySelector('h3');
+      var loc = card.querySelector('.proj__loc');
+      var scope = card.querySelector('.proj__scope');
+      var meta = card.querySelectorAll('.proj__meta span');
+      var slug = '';
+      if (img && img.src) {
+        var m = img.src.match(/projects\/([a-z0-9-]+)-\d+\.jpg/i);
+        if (m) slug = m[1];
+      }
+      var data = {
+        name: h3 ? h3.textContent.trim() : '',
+        tag: badge ? badge.textContent.replace(/\s+/g, ' ').trim() : '',
+        location: loc ? loc.textContent.replace(/\s+/g, ' ').trim() : '',
+        img: img ? img.src : '',
+        area: meta[0] ? meta[0].textContent : '',
+        value: meta[1] ? meta[1].textContent : '',
+        duration: meta[2] ? meta[2].textContent : '',
+        scope: scope ? scope.innerHTML : '',
+        cs: caseStudyMap[slug] || ''
+      };
+      window.dispatchEvent(new CustomEvent('project:open', { detail: data }));
+    });
+    card.style.cursor = 'pointer';
+  });
+
   /* ---------- Per-project galleries (multi-image lightbox groups) ---------- */
   var projGalleries = {
     'sats-food': 4, 'menzies-aviation': 4, 'hoskote-logistics': 2, 'wildcraft': 2,
