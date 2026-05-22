@@ -42,7 +42,8 @@
       "Bash(curl -s \"http://localhost:8080/js/main.js?v=20260522j\")",
       "Bash(git commit -m 'Attractive footer: flagship project thumbnails strip + bigger brand block + gold-underlined headers + cert-style legal grid *)",
       "Bash(git commit -m 'Footer construction creativity: animated blueprint tape + crane skyline + rising SPC blocks *)",
-      "Bash(git commit -m 'Remove footer construction strip; replace with god-level italic Suryapriya backdrop behind SPC logo *)"
+      "Bash(git commit -m 'Remove footer construction strip; replace with god-level italic Suryapriya backdrop behind SPC logo *)",
+      "Bash(git commit -m 'Fix hero CTAs: ::before gold overlay was covering text. Use simple background-color hover instead *)"
     ]
   }
 }
