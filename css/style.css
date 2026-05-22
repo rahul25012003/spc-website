@@ -2795,21 +2795,24 @@ ul { list-style: none; }
 }
 .footer__brand-bg-line {
   position: absolute;
-  bottom: -30px;
-  left: -10px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   display: block;
+  width: 100%;
   font-family: var(--f-display);
   font-style: italic;
-  font-variation-settings: "opsz" 144, "SOFT" 100;
-  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-variation-settings: "opsz" 72, "SOFT" 100;
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
   font-weight: 400;
-  line-height: .85;
-  letter-spacing: -.045em;
+  line-height: 1;
+  letter-spacing: -.035em;
   white-space: nowrap;
+  text-align: left;
   background: linear-gradient(135deg,
-    rgba(184,148,106, .28) 0%,
-    rgba(184,148,106, .12) 50%,
-    transparent 100%);
+    rgba(184,148,106, .30) 0%,
+    rgba(184,148,106, .14) 50%,
+    rgba(184,148,106, .04) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
