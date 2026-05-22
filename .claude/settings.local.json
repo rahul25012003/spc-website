@@ -38,7 +38,9 @@
       "Bash(git commit -m 'All 70+ visual upgrades + case study polish + clean pro footer *)",
       "Bash(git push *)",
       "Bash(git commit -m 'Project list cards open detail modal \\(not just lightbox image\\) *)",
-      "Bash(curl -s -o /dev/null -w \"Local OK: %{http_code}\\\\n\" http://localhost:8080/)"
+      "Bash(curl -s -o /dev/null -w \"Local OK: %{http_code}\\\\n\" http://localhost:8080/)",
+      "Bash(curl -s \"http://localhost:8080/js/main.js?v=20260522j\")",
+      "Bash(git commit -m 'Attractive footer: flagship project thumbnails strip + bigger brand block + gold-underlined headers + cert-style legal grid *)"
     ]
   }
 }
