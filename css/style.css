@@ -2213,9 +2213,34 @@ ul { list-style: none; }
   overflow: hidden;
   background: var(--white);
   box-shadow: 0 2px 6px rgba(31,27,22,.04), 0 12px 32px rgba(31,27,22,.06);
+  position: relative;
+}
+/* Subtle gold scan-line across wall on first view */
+.clients__wall::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg,
+    transparent 30%,
+    rgba(184,148,106,.18) 50%,
+    transparent 70%);
+  background-size: 250% 100%;
+  background-position: 200% 0;
+  animation: wallScan 4s ease-out 1s 1 forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+  pointer-events: none;
+  z-index: 3;
+}
+@keyframes wallScan {
+  from { background-position: 200% 0; opacity: 1; }
+  to { background-position: -100% 0; opacity: 0; }
+}
+@supports not (animation-timeline: view()) {
+  .clients__wall::before { animation-name: none; opacity: 0; }
 }
 
-/* Each client cell — holds a real PNG logo */
+/* Each client cell — holds a real PNG logo with animations */
 .clogo {
   position: relative;
   padding: 22px 18px;
@@ -2223,10 +2248,44 @@ ul { list-style: none; }
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: var(--white);
-  transition: background .3s, transform .3s var(--ease), z-index 0s;
+  transition: background .35s, transform .4s var(--ease), box-shadow .4s, z-index 0s;
   display: flex; align-items: center; justify-content: center;
   min-height: 110px;
+  /* Staggered scroll-in entrance */
+  opacity: 0;
+  transform: translateY(20px) scale(.95);
+  animation: clogoIn .7s var(--ease-out) forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
 }
+@keyframes clogoIn {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@supports not (animation-timeline: view()) {
+  .clogo { opacity: 1; transform: none; animation: none; }
+}
+/* Stagger delays via nth-child */
+.clogo:nth-child(1)  { animation-delay: .00s; }
+.clogo:nth-child(2)  { animation-delay: .05s; }
+.clogo:nth-child(3)  { animation-delay: .10s; }
+.clogo:nth-child(4)  { animation-delay: .15s; }
+.clogo:nth-child(5)  { animation-delay: .20s; }
+.clogo:nth-child(6)  { animation-delay: .25s; }
+.clogo:nth-child(7)  { animation-delay: .30s; }
+.clogo:nth-child(8)  { animation-delay: .35s; }
+.clogo:nth-child(9)  { animation-delay: .40s; }
+.clogo:nth-child(10) { animation-delay: .45s; }
+.clogo:nth-child(11) { animation-delay: .50s; }
+.clogo:nth-child(12) { animation-delay: .55s; }
+.clogo:nth-child(13) { animation-delay: .60s; }
+.clogo:nth-child(14) { animation-delay: .65s; }
+.clogo:nth-child(15) { animation-delay: .70s; }
+.clogo:nth-child(16) { animation-delay: .75s; }
+.clogo:nth-child(17) { animation-delay: .80s; }
+.clogo:nth-child(18) { animation-delay: .85s; }
+.clogo:nth-child(19) { animation-delay: .90s; }
+.clogo:nth-child(20) { animation-delay: .95s; }
+
 .clogo:nth-child(5n) { border-right: 0; }
 .clogo:nth-child(n+16) { border-bottom: 0; }
 .clogo img {
@@ -2235,17 +2294,48 @@ ul { list-style: none; }
   width: auto; height: auto;
   object-fit: contain;
   filter: grayscale(1) opacity(.65);
-  transition: filter .4s ease, transform .35s var(--ease);
+  transition: filter .4s ease, transform .4s var(--ease);
+}
+
+/* Gold expanding ring on hover */
+.clogo::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: border-color .35s ease, inset .35s var(--ease);
+  pointer-events: none;
 }
 .clogo:hover {
   background: var(--cream-soft);
   z-index: 2;
-  transform: scale(1.05);
-  box-shadow: 0 4px 14px rgba(31,27,22,.08), 0 16px 38px rgba(184,148,106,.15);
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px rgba(31,27,22,.1), 0 20px 48px rgba(184,148,106,.22);
+}
+.clogo:hover::after {
+  border-color: var(--accent);
+  inset: 3px;
 }
 .clogo:hover img {
   filter: grayscale(0) opacity(1);
-  transform: scale(1.04);
+  transform: scale(1.06);
+}
+
+@media (max-width: 1024px) {
+  .clients__wall { grid-template-columns: repeat(4, 1fr); }
+  .clogo:nth-child(5n) { border-right: 1px solid var(--line); }
+  .clogo:nth-child(4n) { border-right: 0; }
+  .clogo:nth-child(n+16) { border-bottom: 1px solid var(--line); }
+  .clogo:nth-child(n+17) { border-bottom: 0; }
+}
+@media (max-width: 600px) {
+  .clients__wall { grid-template-columns: repeat(2, 1fr); }
+  .clogo, .clogo:nth-child(n) { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .clogo:nth-child(2n) { border-right: 0; }
+  .clogo:nth-child(n+19) { border-bottom: 0; }
+  .clogo { padding: 18px 14px; min-height: 90px; }
+  .clogo img { max-height: 48px; }
 }
 
 @media (max-width: 1024px) {
@@ -2748,7 +2838,7 @@ ul { list-style: none; }
   .prefooter__actions { justify-content: flex-start; }
 }
 
-/* Footer — clean, professional, visually anchored */
+/* Footer — clean, professional, visually anchored, animated */
 .footer {
   padding: 80px 0 30px;
   background: linear-gradient(180deg, var(--paper) 0%, var(--cream-soft) 100%);
@@ -2756,29 +2846,55 @@ ul { list-style: none; }
   position: relative;
   overflow: hidden;
 }
-/* Architectural gold sun-spot top-right */
+/* Top accent: thin gold line that pulses across the very top of footer */
+.footer-top-line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 25%, var(--accent-deep) 50%, var(--accent) 75%, transparent 100%);
+  background-size: 200% 100%;
+  animation: footerLinePulse 6s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+@keyframes footerLinePulse {
+  0%, 100% { background-position: 0% 50%; opacity: .8; }
+  50% { background-position: 100% 50%; opacity: 1; }
+}
+
+/* Architectural gold sun-spot top-right — slow drift */
 .footer::before {
   content: '';
   position: absolute;
   top: -100px; right: -100px;
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(184,148,106,.10) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(184,148,106,.12) 0%, transparent 65%);
   pointer-events: none;
+  animation: sunDrift 20s ease-in-out infinite alternate;
 }
-/* Subtle blueprint grid */
+@keyframes sunDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-40px, 20px) scale(1.08); }
+}
+/* Subtle blueprint grid — slowly drifts horizontally */
 .footer::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
     repeating-linear-gradient(0deg, rgba(31,27,22,.02) 0 1px, transparent 1px 80px),
-    repeating-linear-gradient(90deg, rgba(31,27,22,.02) 0 1px, transparent 1px 80px);
+    repeating-linear-gradient(90deg, rgba(31,27,22,.025) 0 1px, transparent 1px 80px);
   pointer-events: none;
-  opacity: .6;
+  opacity: .65;
+  animation: gridDrift 90s linear infinite;
+}
+@keyframes gridDrift {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 0 0, 80px 0; }
 }
 .footer > .container { position: relative; z-index: 2; }
 
-/* Column headers with gold underline accent */
+/* Column headers with gold underline that grows on view + extends on hover */
 .footer h5 {
   font-family: var(--f-display);
   font-style: italic;
@@ -2789,13 +2905,29 @@ ul { list-style: none; }
   padding-bottom: 12px;
   position: relative;
   letter-spacing: -.005em;
+  cursor: default;
 }
 .footer h5::after {
   content: '';
   position: absolute;
   left: 0; bottom: 0;
-  width: 28px; height: 2px;
-  background: var(--accent);
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+  transition: width .8s var(--ease-out);
+  animation: h5Underline 1s var(--ease-out) forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+@keyframes h5Underline {
+  to { width: 32px; }
+}
+@supports not (animation-timeline: view()) {
+  .footer h5::after { width: 32px; animation: none; }
+}
+.footer__links:hover h5::after,
+.footer__contact:hover h5::after {
+  width: 60px;
+  transition: width .4s var(--ease);
 }
 
 /* Brand block — bigger, more prominent */
@@ -3033,18 +3165,42 @@ ul { list-style: none; }
 }
 .footer__tagline em { color: var(--accent-deep); }
 .footer__brand p { font-size: 13px; color: var(--muted); line-height: 1.65; max-width: 320px; }
-.footer__socials { display: flex; gap: 8px; margin-top: 18px; }
+.footer__socials { display: flex; gap: 10px; margin-top: 22px; }
 .footer__socials a {
-  width: 36px; height: 36px;
+  position: relative;
+  width: 38px; height: 38px;
   background: var(--cream-soft);
   border: 1px solid var(--line);
   color: var(--ink);
   border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 13px;
-  transition: background .25s, color .25s, transform .15s var(--ease);
+  transition: background .3s, color .3s, transform .3s var(--ease), box-shadow .3s;
+  overflow: visible;
 }
-.footer__socials a:hover { background: var(--ink); color: var(--cream); transform: translateY(-2px); }
+/* Outer gold ring grows on hover */
+.footer__socials a::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(.8);
+  transition: opacity .3s, transform .3s var(--ease);
+}
+.footer__socials a:hover {
+  background: var(--ink);
+  color: var(--accent);
+  transform: translateY(-3px) rotate(-8deg);
+  box-shadow: 0 8px 20px rgba(184,148,106,.25);
+}
+.footer__socials a:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+.footer__socials a i { transition: transform .3s var(--ease); }
+.footer__socials a:hover i { transform: rotate(8deg) scale(1.1); }
 .footer h5 {
   font-family: var(--f-display);
   font-style: italic;
